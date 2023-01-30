@@ -1,13 +1,13 @@
 import logo from './logo.svg';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.scss';
-import AllNotes from './pages/AllNotes';
-import Root from './pages/Root';
-import NoteDetail from './pages/NoteDetail';
-import EditNote from './pages/EditNote';
-import NewNote from './pages/NewNote';
-import { allNotes } from './pages/AllNotes';
-import ErrorPage from './pages/Error';
+import AllNotes from './pages/AllNotes/AllNotes';
+import Root from './pages/Root/Root';
+import NoteDetail from './pages/NoteDetail/NoteDetail';
+import EditNote from './pages/EditNote/EditNote';
+import NewNote from './pages/NewNote/NewNote';
+import { allNotes } from './pages/AllNotes/AllNotes';
+import ErrorPage from './pages/Error/Error';
 
 const router = createBrowserRouter([
     {
