@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import './App.css';
+import './App.scss';
 import AllNotes from './pages/AllNotes';
 import Root from './pages/Root';
 import NoteDetail from './pages/NoteDetail';
