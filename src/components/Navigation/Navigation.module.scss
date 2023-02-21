@@ -1,0 +1,26 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+.navigation {
+    max-width: 930px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+
+    h1 {
+        font-family: 'Kalam';
+        color: $orange;
+        font-size: 32px;
+    }
+
+    ul {
+        display: flex;
+
+        li {
+            &:not(:first-child) {
+                margin-left: 15px;
+            }
+        }
+    }
+}

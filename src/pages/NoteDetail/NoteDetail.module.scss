@@ -1,0 +1,33 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.note-detail {
+    height: 100%;
+
+    &__controls {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 40px;
+
+        a {
+            margin-left: 15px;
+        }
+    }
+
+    h2,
+    p,
+    span {
+        color: $white;
+    }
+
+    //Todo Uraditi fallback poruke generalno svugdje
+    &__heading {
+        color: $white;
+        margin-bottom: 15px;
+    }
+
+    &__text {
+        margin-top: 15px;
+    }
+}

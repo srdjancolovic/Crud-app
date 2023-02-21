@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.scss';
 import AllNotes from './pages/AllNotes/AllNotes';
@@ -8,6 +7,7 @@ import EditNote from './pages/EditNote/EditNote';
 import NewNote from './pages/NewNote/NewNote';
 import { allNotes } from './pages/AllNotes/AllNotes';
 import ErrorPage from './pages/Error/Error';
+import { noteDetailFn } from './pages/NoteDetail/NoteDetail';
 
 const router = createBrowserRouter([
     {
@@ -16,14 +16,16 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
             { index: true, element: <AllNotes />, loader: allNotes },
-            { path: 'new', element: <NewNote /> },
             {
                 path: ':noteId',
+                id: 'note-detail',
+                loader: noteDetailFn,
                 children: [
                     { index: true, element: <NoteDetail /> },
                     { path: 'edit', element: <EditNote /> },
                 ],
             },
+            { path: 'new', element: <NewNote /> },
         ],
     },
 ]);

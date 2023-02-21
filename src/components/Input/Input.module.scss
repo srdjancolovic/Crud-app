@@ -1,0 +1,90 @@
+@import '../../scss/variables';
+.input {
+    position: relative;
+    margin-bottom: 32px;
+    width: 100%;
+
+    &__full-width {
+        max-width: 100%;
+    }
+
+    &--max-450 {
+        max-width: 450px;
+    }
+
+    &__focused {
+        .input__label {
+            top: -15px;
+            left: 0;
+            font-size: 14px;
+            line-height: 18px;
+            transition: $transition;
+        }
+    }
+
+    &__not-focused {
+        .input__label {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 20px;
+        }
+    }
+
+    input {
+        width: 100%;
+        padding: 15px 20px;
+        outline: none;
+        border: 2px solid $white;
+        border-radius: 4px;
+        transition: $transition;
+        background: none;
+        font-size: 16px;
+        line-height: 20px;
+        max-height: 50px;
+        cursor: text;
+
+        @media (hover: hover) {
+            &:hover {
+                border-color: $orange;
+            }
+        }
+
+        &:focus {
+            outline: none;
+            border-color: $orange;
+        }
+
+        &:focus + label {
+            top: -15px;
+            left: 0;
+            font-size: 14px;
+            line-height: 18px;
+            transition: $transition;
+        }
+    }
+
+    label {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 20px;
+        font-size: 16px;
+        line-height: 20px;
+        transition: $transition;
+        cursor: text;
+    }
+
+    ::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+        cursor: pointer;
+    }
+
+    input[type='date'] + label {
+        top: -15px;
+        left: 0;
+        font-size: 14px;
+        line-height: 18px;
+        transition: $transition;
+    }
+}

@@ -1,0 +1,57 @@
+@import '../scss/mixins';
+@import '../scss/variables';
+.btn {
+    padding: 15px 25px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: capitalize;
+    max-height: 50px;
+    transition: $transition;
+    cursor: pointer;
+
+    &--primary {
+        background-color: $orange;
+        color: $black;
+        font-size: 16px;
+        line-height: 20px;
+        border: 2px solid $orange;
+
+        @media (hover: hover) {
+            &:hover {
+                background-color: $orangeHover;
+                border-color: $orangeHover;
+            }
+        }
+    }
+
+    &--secondary {
+        border: 2px solid $orange;
+        color: $orange;
+        font-size: 16px;
+        line-height: 20px;
+        padding: 15px 20px;
+        background-color: transparent;
+
+        @media (hover: hover) {
+            &:hover {
+                background-color: $orange;
+                color: $black;
+            }
+        }
+    }
+
+    &--delete {
+        @extend .btn--secondary;
+        border-color: red;
+        color: red;
+
+        @media (hover: hover) {
+            &:hover {
+                background-color: red;
+                color: $white;
+            }
+        }
+    }
+}

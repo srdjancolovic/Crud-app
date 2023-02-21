@@ -1,0 +1,63 @@
+@import '../../scss/variables';
+.textarea {
+    min-width: 100%;
+    max-width: 100%;
+    max-height: 350px;
+    min-height: 150px;
+    position: relative;
+
+    &__focused {
+        .textarea__label {
+            top: -21px;
+            left: 0;
+            font-size: 14px;
+            line-height: 18px;
+            transition: $transition;
+        }
+    }
+
+    textarea {
+        min-width: 100%;
+        max-width: 100%;
+        min-height: 150px;
+        max-height: 350px;
+        padding: 15px 20px;
+        outline: none;
+        border: 2px solid $white;
+        border-radius: 4px;
+        transition: $transition;
+        background: none;
+        font-size: 16px;
+        line-height: 20px;
+        cursor: text;
+
+        @media (hover: hover) {
+            &:hover {
+                border-color: $orange;
+            }
+        }
+
+        &:focus {
+            outline: none;
+            border-color: $orange;
+        }
+
+        &:focus + label {
+            top: -21px;
+            left: 0;
+            font-size: 14px;
+            line-height: 18px;
+            transition: $transition;
+        }
+    }
+
+    label {
+        position: absolute;
+        top: 15px;
+        left: 20px;
+        font-size: 16px;
+        line-height: 20px;
+        transition: $transition;
+        cursor: text;
+    }
+}
