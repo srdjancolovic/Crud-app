@@ -1,5 +1,5 @@
 @import '../../scss/variables';
-.note-item {
+.user-item {
     border-top: 1px solid $white;
     transition: $transition;
 
@@ -38,5 +38,12 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+    }
+
+    &__web-email {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: space-between;
     }
 }

@@ -1,4 +1,5 @@
 @import './variables';
+@import './mixins';
 * {
     padding: 0;
     margin: 0;
@@ -16,6 +17,10 @@ main {
     margin: 40px auto 0;
     padding: 30px 30px 60px;
     // background-color: $orange;
+
+    @include mq('to', 577) {
+        margin: 15px auto 0;
+    }
 }
 
 a {
@@ -45,4 +50,9 @@ label,
 input,
 textarea {
     color: $white;
+}
+
+a,
+button {
+    -webkit-tap-highlight-color: transparent;
 }

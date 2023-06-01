@@ -1,32 +1,38 @@
 import { NavLink } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import classes from './Navigation.module.scss';
+import { BsPlus } from 'react-icons/bs';
 
 const Navigation = () => {
     const location = useLocation();
 
-    const newNotePage = location.pathname.includes('new');
-    const allNotesPage = location.pathname === '/';
+    const newUserPage = location.pathname.includes('new');
+    const allUsersPage = location.pathname === '/';
 
     return (
         <nav className={classes.navigation}>
-            <h1>Notes</h1>
+            <h1>CRUD</h1>
             <ul>
-                {!allNotesPage ? (
+                {!allUsersPage ? (
                     <li>
                         <NavLink className="btn btn--primary" to="/">
-                            All Notes
+                            All users
                         </NavLink>
                     </li>
                 ) : (
                     ''
                 )}
-                {newNotePage ? (
+                {newUserPage ? (
                     ''
                 ) : (
                     <li>
-                        <NavLink className="btn btn--secondary" to="/new">
-                            +
+                        <NavLink
+                            className="btn btn--secondary btn--with-icon"
+                            to="/new"
+                        >
+                            <span>
+                                <BsPlus />
+                            </span>
                         </NavLink>
                     </li>
                 )}

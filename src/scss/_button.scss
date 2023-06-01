@@ -37,7 +37,7 @@
         @media (hover: hover) {
             &:hover {
                 background-color: $orange;
-                color: $black;
+                color: $white;
             }
         }
     }
@@ -53,5 +53,11 @@
                 color: $white;
             }
         }
+    }
+
+    &--with-icon {
+        max-width: 60px;
+        max-height: 50px;
+        font-size: 30px;
     }
 }

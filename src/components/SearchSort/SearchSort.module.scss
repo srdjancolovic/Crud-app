@@ -1,15 +1,28 @@
+@import '../../scss/mixins';
 .search-sort {
     margin-bottom: 40px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 
+    @include mq('to', 577) {
+        flex-direction: column;
+    }
+
     &__sort-btns {
         display: flex;
+
+        @include mq('to', 577) {
+            width: 100%;
+        }
 
         button {
             &:last-child {
                 margin-left: 15px;
+            }
+
+            @include mq('to', 577) {
+                width: 100%;
             }
         }
     }
