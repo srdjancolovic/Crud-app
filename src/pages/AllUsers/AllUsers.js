@@ -1,55 +1,38 @@
 import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchUsers } from '../../store/thunks/usersThunk';
 import User from '../../components/User/User';
 import SearchSort from '../../components/SearchSort/SearchSort';
-import axios from 'axios';
-
-const api = axios.create({
-    baseURL: 'https://jsonplaceholder.typicode.com/users',
-});
+import Notification from '../../components/Notification/Notification';
 
 const AllUsers = () => {
-    const [users, setUsers] = useState([]);
+    const dispatch = useDispatch();
+    const usersData = useSelector((state) => state.users.users);
+    const loading = useSelector((state) => state.ui.loadingData);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const response = await api.get('/');
-
-            const data = response.data;
-
-            let usersData = [];
-
-            for (const key in data) {
-                usersData.push({
-                    name: data[key].name,
-                    id: data[key].id,
-                    web: data[key].website,
-                    email: data[key].email,
-                    city: data[key].address.city,
-                });
-            }
-
-            setUsers(usersData);
-        };
-
-        fetchData();
-    }, []);
-
-    console.log(users);
+        dispatch(fetchUsers());
+    }, [dispatch]);
 
     return (
         <>
-            {/* <button onClick={addNew}>Add</button> */}
             <SearchSort max450={true} />
-            {users.length === 0 ? <p>Prazno, nema nista</p> : ''}
+            {usersData.length === 0 && !loading ? (
+                <p className="message">Prazno, nema nista</p>
+            ) : (
+                ''
+            )}
+            {loading ? <Notification message="Loading users" /> : null}
             <ul>
-                {users.map((user) => {
+                {usersData.map((user) => {
                     return (
                         <User
                             key={user.id}
                             id={user.id}
                             name={user.name}
                             email={user.email}
-                            city={user.city}
+                            phone={user.phone}
                             web={user.web}
                         />
                     );

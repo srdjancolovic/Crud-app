@@ -1,6 +1,7 @@
 import classes from './SearchSort.module.scss';
 import Input from '../Input/Input';
 import { useState } from 'react';
+import SearchBar from '../SearchBar/SearchBar';
 const SearchSort = ({ max450, users }) => {
     const [filteredusers, setFilteredusers] = useState([users]);
 
@@ -18,11 +19,13 @@ const SearchSort = ({ max450, users }) => {
 
     return (
         <div className={classes['search-sort']}>
-            <Input
+            {/* <input
                 // onChange={(e) => searchHandler(e)}
                 label="Search User"
                 max450={max450}
-            />
+            /> */}
+
+            <SearchBar max450={max450} label="Search User" />
 
             <div className={classes['search-sort__sort-btns']}>
                 <button className="btn btn--secondary">Latest</button>

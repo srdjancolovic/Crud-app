@@ -1,5 +1,5 @@
 @import '../../scss/variables';
-.input {
+.search-bar {
     position: relative;
     margin-bottom: 32px;
     width: 100%;
@@ -12,38 +12,10 @@
         max-width: 450px;
     }
 
-    // .input__label {
-    //     top: -20px;
-    //     left: 10px;
-    //     font-size: 14px;
-    //     line-height: 18px;
-    //     transition: $transition;
-    //     position: absolute;
-    // }
-
-    // &__focused {
-    //     .input__label {
-    //         top: -15px;
-    //         left: 0;
-    //         font-size: 14px;
-    //         line-height: 18px;
-    //         transition: $transition;
-    //     }
-    // }
-
-    // &__not-focused {
-    //     .input__label {
-    //         top: -20px;
-    //         left: 10px;
-    //         font-size: 14px;
-    //         line-height: 18px;
-    //         transition: $transition;
-    //         position: absolute;
-    //     }
-    // }
-
     label {
         margin-left: 10px;
+        position: absolute;
+        top: -23px;
     }
 
     input {

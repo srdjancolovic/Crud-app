@@ -56,3 +56,21 @@ a,
 button {
     -webkit-tap-highlight-color: transparent;
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: $white !important;
+    -webkit-box-shadow: 0 0 0 30px $black inset !important;
+
+    caret-color: $white;
+}
+
+button {
+    &:disabled {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+}
