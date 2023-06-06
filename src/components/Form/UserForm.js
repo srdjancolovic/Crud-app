@@ -5,7 +5,16 @@ import { basicSchema } from '../../schemas/schema';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUsers, editUser, editUsers } from '../../store/thunks/usersThunk';
 import { useParams } from 'react-router-dom';
-
+import { db } from '../../firebase-config';
+import {
+    addDoc,
+    collection,
+    deleteDoc,
+    setDoc,
+    doc,
+    getDocs,
+    updateDoc,
+} from 'firebase/firestore';
 const UserForm = ({ user }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -16,6 +25,12 @@ const UserForm = ({ user }) => {
     const cancelBtnHandler = (e) => {
         e.preventDefault();
         navigate('/');
+    };
+
+    const updateUser = async (id, data) => {
+        const userDoc = doc(db, 'users', id);
+        await setDoc(userDoc, data);
+        console.log(userDoc);
     };
     const onSubmit = (values, actions) => {
         dispatch(
@@ -29,17 +44,15 @@ const UserForm = ({ user }) => {
         );
 
         if (user) {
+            console.log('USER', user.id);
             dispatch(
-                editUsers(
-                    {
-                        name: values.name,
-                        id: Math.floor(Math.random() * 1000000),
-                        website: values.website,
-                        email: values.email,
-                        phone: values.phone,
-                    },
-                    params.userId
-                )
+                editUsers(user.id, {
+                    name: values.name,
+                    website: values.website,
+                    id: user.id,
+                    email: values.email,
+                    phone: values.phone,
+                })
             );
         }
 

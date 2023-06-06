@@ -5,8 +5,10 @@ import UserForm from '../../components/Form/UserForm';
 const EditUser = () => {
     const params = useParams();
     const users = useSelector((state) => state.users.users);
+    // const paramsId = params.userId;
     const paramsId = params.userId;
 
+    // const user = users.find((user) => user.id === paramsId);
     const user = users.find((user) => user.id === paramsId);
 
     return (
