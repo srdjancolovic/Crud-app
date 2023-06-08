@@ -1,4 +1,4 @@
-@import './variables.scss';
+@import '../../scss/variables';
 .form {
     margin-top: 40px;
 
@@ -26,6 +26,7 @@
 
     &__actions {
         display: flex;
+        justify-content:flex-end;
     }
 
     &__success-msg {

@@ -1,47 +1,33 @@
+import classes from './UserForm.module.scss';
 import Input from '../Input/Input';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import { basicSchema } from '../../schemas/schema';
 import { useDispatch, useSelector } from 'react-redux';
-import { addUsers, editUser, editUsers } from '../../store/thunks/usersThunk';
-import { useParams } from 'react-router-dom';
-import { db } from '../../firebase-config';
-import {
-    addDoc,
-    collection,
-    deleteDoc,
-    setDoc,
-    doc,
-    getDocs,
-    updateDoc,
-} from 'firebase/firestore';
+import { addUsers, editUsers } from '../../store/thunks/usersThunk';
 const UserForm = ({ user }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const users = useSelector((state) => state.users.users);
-    const params = useParams();
-    const paramsId = parseInt(params.userId);
+    const formMessage = useSelector((state) => state.ui.formMessage);
 
     const cancelBtnHandler = (e) => {
         e.preventDefault();
         navigate('/');
     };
 
-    const updateUser = async (id, data) => {
-        const userDoc = doc(db, 'users', id);
-        await setDoc(userDoc, data);
-        console.log(userDoc);
-    };
     const onSubmit = (values, actions) => {
-        dispatch(
-            addUsers({
-                name: values.name,
-                id: Math.floor(Math.random() * 1000000),
-                website: values.website,
-                email: values.email,
-                phone: values.phone,
-            })
-        );
+        if (!user) {
+            dispatch(
+                addUsers({
+                    name: values.name,
+                    id: Math.floor(Math.random() * 1000000),
+                    website: values.website,
+                    email: values.email,
+                    phone: values.phone,
+                })
+            );
+            navigate('/');
+        }
 
         if (user) {
             console.log('USER', user.id);
@@ -54,12 +40,9 @@ const UserForm = ({ user }) => {
                     phone: values.phone,
                 })
             );
+
+            
         }
-
-        navigate('/');
-        console.log(users);
-
-        actions.resetForm();
     };
 
     return (
@@ -78,7 +61,7 @@ const UserForm = ({ user }) => {
             onSubmit={onSubmit}
         >
             {(props) => (
-                <Form className="form">
+                <Form className={classes.form}>
                     <Input id="name" name="name" label="Name" type="text" />
                     <Input id="email" name="email" label="Email" type="email" />
                     <Input id="phone" name="phone" label="Phone" type="phone" />
@@ -86,19 +69,33 @@ const UserForm = ({ user }) => {
                         id="website"
                         name="website"
                         label="Website"
-                        type="website"
+                        type="image"
                     />
 
-                    <div className="form__controls">
-                        <button
-                            className="btn btn--secondary"
-                            onClick={cancelBtnHandler}
-                        >
-                            Cancel
-                        </button>
-                        <button className="btn btn--primary" type="submit">
-                            Save
-                        </button>
+                    <div className={classes['form__controls']}>
+                        <div className={classes['form__message']}>
+                            <p
+                                className={`${
+                                    formMessage
+                                        ? classes['form__success-msg--show']
+                                        : classes['form__success-msg--hide']
+                                } form__success-msg`}
+                            >
+                                User successfully edited!
+                            </p>
+                        </div>
+
+                        <div className={classes['form__actions']}>
+                            <button
+                                className="btn btn--secondary"
+                                onClick={cancelBtnHandler}
+                            >
+                                Cancel
+                            </button>
+                            <button className="btn btn--primary" type="submit">
+                                Save
+                            </button>
+                        </div>
                     </div>
                 </Form>
             )}

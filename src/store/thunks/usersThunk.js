@@ -1,6 +1,5 @@
 import { usersActions } from '../reducers/usersReducer';
 import { uiActions } from '../reducers/uiReducer';
-import axios from 'axios';
 import { db } from '../../firebase-config';
 import {
     addDoc,
@@ -11,11 +10,7 @@ import {
     updateDoc,
 } from 'firebase/firestore';
 
-const api = axios.create({
-    baseURL: 'https://jsonplaceholder.typicode.com/users/',
-    // baseURL:
-    //     'https://carts-c823c-default-rtdb.europe-west1.firebasedatabase.app/carts.json',
-});
+
 
 //Fetch user data
 export const fetchUsers = () => {
@@ -35,7 +30,7 @@ export const fetchUsers = () => {
         };
 
         try {
-            dispatch(uiActions.showMessage(true));
+            dispatch(uiActions.loadingUsers(true));
             const userData = await fetchData();
             // console.log('FETCHED USER DATA', userData);
             let selectedUserData = [];
@@ -56,7 +51,7 @@ export const fetchUsers = () => {
                     users: selectedUserData || [],
                 })
             );
-            dispatch(uiActions.showMessage(false));
+            dispatch(uiActions.loadingUsers(false));
         } catch (err) {
             //!Sredhiti erore gresku da prikazuje na ekranu
             console.log(err.message);
@@ -70,34 +65,35 @@ export const addUsers = (data) => {
             const usersColection = collection(db, 'users');
             await addDoc(usersColection, data);
         };
-
         await sendUserData();
     };
 };
 
 export const editUsers = (id, data) => {
+    
     return async (dispatch) => {
         const editUserData = async () => {
             const userDoc = doc(db, 'users', id);
             await updateDoc(userDoc, data);
-
-            console.log('DATA from EDIT =>>>', data);
-
-            console.log('ID FROM EDIT =>>>', id);
         };
 
         await editUserData();
+        dispatch(uiActions.formMessage(true));
+
+        setTimeout(() => {
+            dispatch(uiActions.formMessage(false));
+        }, 3000);
     };
 };
 
 export const deleteUsers = (id) => {
     return async (dispatch) => {
-        const editUserData = async () => {
+        const deleteUserData = async () => {
             const userDoc = doc(db, 'users', id);
             console.log(id);
             await deleteDoc(userDoc);
         };
 
-        await editUserData();
+        await deleteUserData();
     };
 };

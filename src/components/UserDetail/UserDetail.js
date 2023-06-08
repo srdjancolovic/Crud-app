@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import classes from './UserDetail.module.scss';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { deleteUsers } from '../../store/thunks/usersThunk';
 
@@ -8,12 +8,15 @@ const UserDetail = () => {
     const params = useParams();
     const users = useSelector((state) => state.users.users);
     const paramsId = params.userId;
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     //Find user that has same id as params ID
     const user = users.find((user) => user.id === paramsId);
 
     const deleteUserHandler = () => {
-        dispatchEvent(deleteUsers('TFrizXyolUistE5ygZf6'));
+        dispatch(deleteUsers(user.id));
+        navigate('/');
     };
 
     // console.log(user);
