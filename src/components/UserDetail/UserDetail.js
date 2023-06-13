@@ -35,14 +35,26 @@ const UserDetail = () => {
                 </Link>
             </div>
             <div className={classes['user-detail__content']}>
-                <h2 className={classes['user-detail__heading']}>
-                    {user.name}{' '}
-                </h2>
-                <span className={classes['user-detail__date']}>
-                    {user.web}{' '}
+                <div className={classes['user-detail__img-name']}>
+                    <h2 className={classes['user-detail__heading']}>
+                        {user.name}
+                    </h2>
+                </div>
+
+                <p className={classes['user-detail__text']}>
+                    Email: {user.email}
+                </p>
+                <p className={classes['user-detail__text']}>
+                    Phone:{' '}
+                    {user.phone ? user.phone : 'Phone number is not added!'}
+                </p>
+                <span className={classes['user-detail__text']}>
+                    Website: {user.web ? user.web : 'No website link'}
                 </span>
-                <p className={classes['user-detail__text']}>{user.email}</p>
-                <p className={classes['user-detail__text']}>{user.phone}</p>
+                <p className={classes['user-detail__text']}>
+                    Additional notes:{' '}
+                    {user.notes ? user.notes : 'No additional notes!'}
+                </p>
             </div>
         </div>
     );

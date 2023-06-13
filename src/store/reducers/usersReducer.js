@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { act } from 'react-dom/test-utils';
 
-const initalUsersState = { users: [], changed: false };
+const initalUsersState = { users: [], changed: false, searchResults: [] };
 
 const usersReducer = createSlice({
     name: 'users',

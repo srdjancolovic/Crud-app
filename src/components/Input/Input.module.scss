@@ -12,36 +12,6 @@
         max-width: 450px;
     }
 
-    // .input__label {
-    //     top: -20px;
-    //     left: 10px;
-    //     font-size: 14px;
-    //     line-height: 18px;
-    //     transition: $transition;
-    //     position: absolute;
-    // }
-
-    // &__focused {
-    //     .input__label {
-    //         top: -15px;
-    //         left: 0;
-    //         font-size: 14px;
-    //         line-height: 18px;
-    //         transition: $transition;
-    //     }
-    // }
-
-    // &__not-focused {
-    //     .input__label {
-    //         top: -20px;
-    //         left: 10px;
-    //         font-size: 14px;
-    //         line-height: 18px;
-    //         transition: $transition;
-    //         position: absolute;
-    //     }
-    // }
-
     label {
         margin-left: 10px;
     }
@@ -90,17 +60,6 @@
     &__err-msg {
         color: $red;
     }
-
-    // label {
-    //     position: absolute;
-    //     top: 50%;
-    //     transform: translateY(-50%);
-    //     left: 20px;
-    //     font-size: 16px;
-    //     line-height: 20px;
-    //     transition: $transition;
-    //     cursor: text;
-    // }
 
     input + label {
         top: -15px;

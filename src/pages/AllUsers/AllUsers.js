@@ -9,8 +9,10 @@ import Notification from '../../components/Notification/Notification';
 const AllUsers = () => {
     const dispatch = useDispatch();
     const usersData = useSelector((state) => state.users.users);
+    const searchRes = useSelector((state) => state.users.searchResults);
     const loading = useSelector((state) => state.ui.loadingData);
 
+    console.log('Search res', searchRes);
     useEffect(() => {
         dispatch(fetchUsers());
     }, [dispatch]);
@@ -23,20 +25,25 @@ const AllUsers = () => {
             ) : (
                 ''
             )}
-            {loading ? <Notification message="Loading users" /> : null}
+            {/* {loading ? <Notification message="Loading users" /> : null} */}
             <ul>
-                {usersData.map((user) => {
-                    return (
-                        <User
-                            key={user.id}
-                            id={user.id}
-                            name={user.name}
-                            email={user.email}
-                            phone={user.phone}
-                            web={user.web}
-                        />
-                    );
-                })}
+                {loading ? (
+                    <Notification message="Loading users" />
+                ) : (
+                    usersData.map((user) => {
+                        return (
+                            <User
+                                key={user.id}
+                                id={user.id}
+                                name={user.name}
+                                email={user.email}
+                                phone={user.phone}
+                                web={user.web}
+                                notes={user.notes}
+                            />
+                        );
+                    })
+                )}
             </ul>
         </>
     );

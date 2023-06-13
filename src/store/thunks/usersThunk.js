@@ -10,8 +10,6 @@ import {
     updateDoc,
 } from 'firebase/firestore';
 
-
-
 //Fetch user data
 export const fetchUsers = () => {
     return async (dispatch) => {
@@ -44,6 +42,7 @@ export const fetchUsers = () => {
                     web: userData[key].website,
                     email: userData[key].email,
                     phone: userData[key].phone,
+                    notes: userData[key].notes,
                 });
             }
             dispatch(
@@ -70,7 +69,6 @@ export const addUsers = (data) => {
 };
 
 export const editUsers = (id, data) => {
-    
     return async (dispatch) => {
         const editUserData = async () => {
             const userDoc = doc(db, 'users', id);

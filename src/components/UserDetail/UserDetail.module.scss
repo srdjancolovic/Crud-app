@@ -15,6 +15,22 @@
         }
     }
 
+    &__img-name {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+
+        h2 {
+            font-size: 40px;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+            border-radius: 4px;
+        }
+    }
+
     h2,
     p,
     span {

@@ -5,7 +5,10 @@ import { Formik, Form } from 'formik';
 import { basicSchema } from '../../schemas/schema';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUsers, editUsers } from '../../store/thunks/usersThunk';
+import { useState } from 'react';
+import Textarea from '../Textarea/Textarea';
 const UserForm = ({ user }) => {
+    const [imageUpload, setImageUpload] = useState(null);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const formMessage = useSelector((state) => state.ui.formMessage);
@@ -15,7 +18,7 @@ const UserForm = ({ user }) => {
         navigate('/');
     };
 
-    const onSubmit = (values, actions) => {
+    const onSubmit = (values) => {
         if (!user) {
             dispatch(
                 addUsers({
@@ -24,6 +27,7 @@ const UserForm = ({ user }) => {
                     website: values.website,
                     email: values.email,
                     phone: values.phone,
+                    notes: values.notes,
                 })
             );
             navigate('/');
@@ -38,10 +42,9 @@ const UserForm = ({ user }) => {
                     id: user.id,
                     email: values.email,
                     phone: values.phone,
+                    notes: values.notes,
                 })
             );
-
-            
         }
     };
 
@@ -54,8 +57,9 @@ const UserForm = ({ user }) => {
                           email: user.email,
                           phone: user.phone,
                           website: user.web,
+                          notes: user.notes,
                       }
-                    : { name: '', email: '', phone: '', website: '' }
+                    : { name: '', email: '', phone: '', website: '', notes: '' }
             }
             validationSchema={basicSchema}
             onSubmit={onSubmit}
@@ -69,8 +73,9 @@ const UserForm = ({ user }) => {
                         id="website"
                         name="website"
                         label="Website"
-                        type="image"
+                        type="text"
                     />
+                    <Textarea label="Additional notes" name="notes" />
 
                     <div className={classes['form__controls']}>
                         <div className={classes['form__message']}>
