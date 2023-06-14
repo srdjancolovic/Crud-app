@@ -20,8 +20,8 @@ const UserForm = ({ user }) => {
     let day = date.getDate();
     let month = date.getMonth() + 1;
     let year = date.getFullYear();
-    let time = `${date.getHours()}:${date.getMinutes()}`;
-    let currentDate = `${day}.${month}.${year}. at ${time}`;
+    let time = date.toLocaleTimeString();
+    let currentDate = `${day}. ${month}. ${year}. at ${time}`;
 
     const cancelBtnHandler = (e) => {
         e.preventDefault();

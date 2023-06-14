@@ -8,6 +8,7 @@ import {
     doc,
     getDocs,
     updateDoc,
+    getDoc,
 } from 'firebase/firestore';
 
 //Fetch user data
@@ -28,7 +29,7 @@ export const fetchUsers = () => {
         try {
             dispatch(uiActions.loadingUsers(true));
             const userData = await fetchData();
-            // console.log('FETCHED USER DATA', userData);
+            console.log('FETCHED USER DATA', userData);
             let selectedUserData = [];
 
             for (const key in userData) {

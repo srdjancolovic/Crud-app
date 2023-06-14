@@ -1,20 +1,24 @@
 import classes from './SearchBar.module.scss';
-import { usersActions } from '../../store/reducers/usersReducer';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 const SearchBar = (props) => {
-    const dispatch = useDispatch();
     const users = useSelector((state) => state.users.users);
 
     const searchUsersHandler = (e) => {
         e.preventDefault();
         const searchedUsers = users.filter((user) => {
-            return user.name
-                .toLowerCase()
-                .includes(e.target.value.toLowerCase());
+            return (
+                user.name
+                    .toLowerCase()
+                    .includes(e.target.value.toLowerCase()) ||
+                user.email
+                    .toLowerCase()
+                    .includes(e.target.value.toLowerCase()) ||
+                user.web.toLowerCase().includes(e.target.value.toLowerCase()) ||
+                user.phone.includes(e.target.value)
+            );
         });
 
-        const isEmpty = e.target.value === 0;
-
+        const isEmpty = e.target.value.length === 0;
         props.onSearchUser(searchedUsers, isEmpty);
     };
 
@@ -25,9 +29,17 @@ const SearchBar = (props) => {
             }`}
         >
             <label htmlFor={props.id}>{props.label}</label>
-            <input onChange={searchUsersHandler} />
+            <input onChange={searchUsersHandler} disabled={users.length < 2} />
         </div>
     );
 };
 
 export default SearchBar;
+// ||
+//                 user.email
+//                     .toLowerCase()
+//                     .includes(e.target.value.toLowerCase()) ||
+//                 user.phone ||
+//                 user.website
+//                     .toLowerCase()
+//                     .includes(e.target.value.toLowerCase())

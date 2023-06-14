@@ -4,6 +4,7 @@ import { fetchUsers } from '../../store/thunks/usersThunk';
 import User from '../../components/User/User';
 import SearchSort from '../../components/SearchSort/SearchSort';
 import Notification from '../../components/Notification/Notification';
+import { usersActions } from '../../store/reducers/usersReducer';
 
 const AllUsers = () => {
     const dispatch = useDispatch();
@@ -11,7 +12,6 @@ const AllUsers = () => {
     const loading = useSelector((state) => state.ui.loadingData);
     const [searchRes, setSearchRes] = useState([]);
     const [emptySearch, setEmptySearch] = useState(true);
-    const [initalUsers, setInitalUsers] = useState([usersData]);
 
     useEffect(() => {
         dispatch(fetchUsers());
@@ -26,16 +26,16 @@ const AllUsers = () => {
         <>
             <SearchSort max450={true} onSearchUser={searchUsersHandler} />
             {usersData.length === 0 && !loading ? (
-                <p className="message">Prazno, nema nista</p>
+                <Notification message="No users added! Please add some!" />
             ) : (
                 ''
             )}
+
             <ul>
                 <div>
                     {loading ? (
                         <Notification message="Loading users" />
                     ) : (
-                        searchRes.length === 0 &&
                         emptySearch &&
                         usersData.map((user) => {
                             return (

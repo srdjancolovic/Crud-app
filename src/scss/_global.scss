@@ -68,6 +68,16 @@ input:-webkit-autofill:active {
     caret-color: $white;
 }
 
+input {
+    &:disabled {
+        cursor: not-allowed !important;
+
+        &:hover {
+            border: 2px solid $white !important;
+        }
+    }
+}
+
 button {
     &:disabled {
         opacity: 0.6;

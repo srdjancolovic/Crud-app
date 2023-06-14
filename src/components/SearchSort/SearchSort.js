@@ -2,17 +2,19 @@ import classes from './SearchSort.module.scss';
 import SearchBar from '../SearchBar/SearchBar';
 import { usersActions } from '../../store/reducers/usersReducer';
 import { useDispatch, useSelector } from 'react-redux';
-const SearchSort = ({ max450, users, onSearchUser }) => {
+const SearchSort = ({ max450, onSearchUser }) => {
     const dispatch = useDispatch();
-    const userss = useSelector((state) => state.users.users);
+    const users = useSelector((state) => state.users.users);
     const sortAscHandler = () => {
         dispatch(usersActions.sortAscending());
-        console.log(userss);
     };
 
     const sortDescHandler = () => {
         dispatch(usersActions.sortDescending());
-        console.log(userss);
+    };
+
+    const defaultSortHandler = () => {
+        dispatch(usersActions.defaultSort());
     };
 
     return (
@@ -27,10 +29,15 @@ const SearchSort = ({ max450, users, onSearchUser }) => {
                 <button
                     className="btn btn--secondary"
                     onClick={sortDescHandler}
+                    disabled={users.length < 2}
                 >
                     Latest
                 </button>
-                <button className="btn btn--secondary" onClick={sortAscHandler}>
+                <button
+                    className="btn btn--secondary"
+                    onClick={sortAscHandler}
+                    disabled={users.length < 2}
+                >
                     Oldest
                 </button>
             </div>
