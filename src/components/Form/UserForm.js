@@ -8,10 +8,20 @@ import { addUsers, editUsers } from '../../store/thunks/usersThunk';
 import { useState } from 'react';
 import Textarea from '../Textarea/Textarea';
 const UserForm = ({ user }) => {
-    const [imageUpload, setImageUpload] = useState(null);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const formMessage = useSelector((state) => state.ui.formMessage);
+
+    //Date and timestamp
+
+    //Timestamp used for sorting because of redux toolkit limitations
+    const timestamp = Date.now();
+    const date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let time = `${date.getHours()}:${date.getMinutes()}`;
+    let currentDate = `${day}.${month}.${year}. at ${time}`;
 
     const cancelBtnHandler = (e) => {
         e.preventDefault();
@@ -23,11 +33,12 @@ const UserForm = ({ user }) => {
             dispatch(
                 addUsers({
                     name: values.name,
-                    id: Math.floor(Math.random() * 1000000),
                     website: values.website,
                     email: values.email,
                     phone: values.phone,
                     notes: values.notes,
+                    timestamp: timestamp,
+                    date: currentDate,
                 })
             );
             navigate('/');

@@ -22,8 +22,6 @@ export const fetchUsers = () => {
                 id: doc.id,
             }));
 
-            console.log('DATA ', data);
-
             return data;
         };
 
@@ -33,8 +31,6 @@ export const fetchUsers = () => {
             // console.log('FETCHED USER DATA', userData);
             let selectedUserData = [];
 
-            console.log('SELECETED USER DATA', userData);
-
             for (const key in userData) {
                 selectedUserData.push({
                     name: userData[key].name,
@@ -43,6 +39,8 @@ export const fetchUsers = () => {
                     email: userData[key].email,
                     phone: userData[key].phone,
                     notes: userData[key].notes,
+                    date: userData[key].date,
+                    timestamp: userData[key].timestamp,
                 });
             }
             dispatch(
@@ -88,7 +86,6 @@ export const deleteUsers = (id) => {
     return async (dispatch) => {
         const deleteUserData = async () => {
             const userDoc = doc(db, 'users', id);
-            console.log(id);
             await deleteDoc(userDoc);
         };
 

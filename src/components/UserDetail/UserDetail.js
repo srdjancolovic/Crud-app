@@ -13,13 +13,12 @@ const UserDetail = () => {
 
     //Find user that has same id as params ID
     const user = users.find((user) => user.id === paramsId);
+    console.log(typeof user.date);
 
     const deleteUserHandler = () => {
         dispatch(deleteUsers(user.id));
         navigate('/');
     };
-
-    // console.log(user);
 
     return (
         <div className={classes['user-detail']}>
@@ -41,6 +40,9 @@ const UserDetail = () => {
                     </h2>
                 </div>
 
+                <p className={classes['user-detail__text']}>
+                    User added on: {user.date}
+                </p>
                 <p className={classes['user-detail__text']}>
                     Email: {user.email}
                 </p>

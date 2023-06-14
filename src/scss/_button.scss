@@ -76,4 +76,13 @@
             }
         }
     }
+
+    &--active {
+        background-color: $orange;
+        color: $white;
+        &:hover {
+            background-color: $orange;
+            color: $white;
+        }
+    }
 }

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchUsers } from '../../store/thunks/usersThunk';
 import User from '../../components/User/User';
@@ -9,41 +8,69 @@ import Notification from '../../components/Notification/Notification';
 const AllUsers = () => {
     const dispatch = useDispatch();
     const usersData = useSelector((state) => state.users.users);
-    const searchRes = useSelector((state) => state.users.searchResults);
     const loading = useSelector((state) => state.ui.loadingData);
+    const [searchRes, setSearchRes] = useState([]);
+    const [emptySearch, setEmptySearch] = useState(true);
+    const [initalUsers, setInitalUsers] = useState([usersData]);
 
-    console.log('Search res', searchRes);
     useEffect(() => {
         dispatch(fetchUsers());
     }, [dispatch]);
 
+    const searchUsersHandler = (users, isEmpty) => {
+        setSearchRes(users);
+        setEmptySearch(isEmpty);
+    };
+
     return (
         <>
-            <SearchSort max450={true} />
+            <SearchSort max450={true} onSearchUser={searchUsersHandler} />
             {usersData.length === 0 && !loading ? (
                 <p className="message">Prazno, nema nista</p>
             ) : (
                 ''
             )}
-            {/* {loading ? <Notification message="Loading users" /> : null} */}
             <ul>
-                {loading ? (
-                    <Notification message="Loading users" />
-                ) : (
-                    usersData.map((user) => {
-                        return (
-                            <User
-                                key={user.id}
-                                id={user.id}
-                                name={user.name}
-                                email={user.email}
-                                phone={user.phone}
-                                web={user.web}
-                                notes={user.notes}
-                            />
-                        );
-                    })
-                )}
+                <div>
+                    {loading ? (
+                        <Notification message="Loading users" />
+                    ) : (
+                        searchRes.length === 0 &&
+                        emptySearch &&
+                        usersData.map((user) => {
+                            return (
+                                <User
+                                    key={user.id}
+                                    id={user.id}
+                                    name={user.name}
+                                    email={user.email}
+                                    phone={user.phone}
+                                    web={user.web}
+                                    notes={user.notes}
+                                />
+                            );
+                        })
+                    )}
+                    {searchRes.length === 0 && !emptySearch ? (
+                        <Notification message="Nema rezultata" />
+                    ) : (
+                        searchRes.length > 0 &&
+                        !emptySearch &&
+                        searchRes.map((user) => {
+                            return (
+                                <User
+                                    key={user.id}
+                                    id={user.id}
+                                    name={user.name}
+                                    email={user.email}
+                                    phone={user.phone}
+                                    web={user.web}
+                                    notes={user.notes}
+                                />
+                            );
+                        })
+                    )}
+                </div>
             </ul>
         </>
     );

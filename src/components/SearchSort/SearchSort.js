@@ -1,35 +1,38 @@
 import classes from './SearchSort.module.scss';
-import Input from '../Input/Input';
-import { useState } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
-const SearchSort = ({ max450, users }) => {
-    const [filteredusers, setFilteredusers] = useState([users]);
+import { usersActions } from '../../store/reducers/usersReducer';
+import { useDispatch, useSelector } from 'react-redux';
+const SearchSort = ({ max450, users, onSearchUser }) => {
+    const dispatch = useDispatch();
+    const userss = useSelector((state) => state.users.users);
+    const sortAscHandler = () => {
+        dispatch(usersActions.sortAscending());
+        console.log(userss);
+    };
 
-    // const searchHandler = (e) => {
-    //     const keyword = e.target.value;
-    //     const filtered = filteredusers.filter((item) => {
-    //         console.log('item=>', item);
-    //         console.log('keyowrd=>', keyword);
-    //         // return item.title.includes(keyword);
-    //     });
-
-    //     console.log('Filtered', filtered);
-    //     setFilteredusers(filtered);
-    // };
+    const sortDescHandler = () => {
+        dispatch(usersActions.sortDescending());
+        console.log(userss);
+    };
 
     return (
         <div className={classes['search-sort']}>
-            {/* <input
-                // onChange={(e) => searchHandler(e)}
-                label="Search User"
+            <SearchBar
                 max450={max450}
-            /> */}
-
-            <SearchBar max450={max450} label="Search User" />
+                label="Search User"
+                onSearchUser={onSearchUser}
+            />
 
             <div className={classes['search-sort__sort-btns']}>
-                <button className="btn btn--secondary">Latest</button>
-                <button className="btn btn--secondary">Oldest</button>
+                <button
+                    className="btn btn--secondary"
+                    onClick={sortDescHandler}
+                >
+                    Latest
+                </button>
+                <button className="btn btn--secondary" onClick={sortAscHandler}>
+                    Oldest
+                </button>
             </div>
         </div>
     );

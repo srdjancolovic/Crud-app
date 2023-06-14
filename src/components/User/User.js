@@ -7,11 +7,11 @@ const userItem = ({ id, name, email, phone, web }) => {
             <Link to={`/${id}`}>
                 <div className={classes['user-item__title-text']}>
                     <h2>{name} </h2>
-                    <p>{phone} </p>
+                    <p>{email} </p>
                 </div>
                 <div className={classes['user-item__web-email']}>
                     <span className={classes['user-item__date']}>{web} </span>
-                    <span className={classes['user-item__date']}>{email} </span>
+                    <span className={classes['user-item__date']}>{phone} </span>
                 </div>
             </Link>
         </li>

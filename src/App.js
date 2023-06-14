@@ -6,6 +6,7 @@ import AllUsers from './pages/AllUsers/AllUsers';
 import ErrorPage from './pages/Error/Error';
 import EditUser from './pages/EditUser/EditUser';
 import UserDetail from './components/UserDetail/UserDetail';
+import { useSelector } from 'react-redux';
 
 const router = createBrowserRouter([
     {
@@ -27,7 +28,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-    return <RouterProvider router={router} />;
+    return (
+        <>
+            <RouterProvider router={router} />;
+        </>
+    );
 }
 
 export default App;
