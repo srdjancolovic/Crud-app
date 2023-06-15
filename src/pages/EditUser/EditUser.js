@@ -18,11 +18,13 @@ const EditUser = () => {
 
     return (
         <>
-            <h2>Edit user</h2>
             {users.length > 0 ? (
-                <UserForm user={user} />
+                <div>
+                    <h2>Edit user</h2>
+                    <UserForm user={user} />
+                </div>
             ) : (
-                <Notification message="Loading form" />
+                <Notification message="Loading edit form..." />
             )}
         </>
     );

@@ -1,6 +1,6 @@
 import classes from './User.module.scss';
 
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 const userItem = ({ id, name, email, phone, web }) => {
     return (
         <li className={classes['user-item']}>
@@ -10,8 +10,12 @@ const userItem = ({ id, name, email, phone, web }) => {
                     <p>{email} </p>
                 </div>
                 <div className={classes['user-item__web-email']}>
-                    <span className={classes['user-item__date']}>{web} </span>
-                    <span className={classes['user-item__date']}>{phone} </span>
+                    <span className={classes['user-item__date']}>
+                        {web ? web : 'No website'}{' '}
+                    </span>
+                    <span className={classes['user-item__date']}>
+                        {phone ? phone : 'No phone number'}{' '}
+                    </span>
                 </div>
             </Link>
         </li>

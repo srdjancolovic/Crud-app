@@ -5,10 +5,14 @@ import { deleteUsers } from '../../store/thunks/usersThunk';
 import { useEffect } from 'react';
 import { fetchUsers } from '../../store/thunks/usersThunk';
 import Notification from '../Notification/Notification';
+import { AiOutlinePhone } from 'react-icons/ai';
+import { AiOutlineMail } from 'react-icons/ai';
+import { AiOutlineCalendar } from 'react-icons/ai';
+import { SlGlobe } from 'react-icons/sl';
+import { CgNotes } from 'react-icons/cg';
 const UserDetail = () => {
     const params = useParams();
     const users = useSelector((state) => state.users.users);
-    const loading = useSelector((state) => state.ui.loadingData);
     const paramsId = params.userId;
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -49,22 +53,23 @@ const UserDetail = () => {
                         </div>
 
                         <p className={classes['user-detail__text']}>
-                            User added on: {user.date}
+                            <AiOutlineCalendar /> {user.date}
                         </p>
                         <p className={classes['user-detail__text']}>
-                            Email: {user.email}
+                            <AiOutlineMail /> {user.email}
                         </p>
                         <p className={classes['user-detail__text']}>
-                            Phone:{' '}
+                            <AiOutlinePhone />
                             {user.phone
                                 ? user.phone
                                 : 'Phone number is not added!'}
                         </p>
                         <span className={classes['user-detail__text']}>
-                            Website: {user.web ? user.web : 'No website link'}
+                            <SlGlobe />{' '}
+                            {user.web ? user.web : 'No website link'}
                         </span>
                         <p className={classes['user-detail__text']}>
-                            Additional notes:{' '}
+                            <CgNotes />
                             {user.notes ? user.notes : 'No additional notes!'}
                         </p>
                     </div>

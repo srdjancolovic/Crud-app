@@ -45,5 +45,22 @@
 
     &__text {
         margin-top: 15px;
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+
+        @include mq('to', 577) {
+            font-size: 18px;
+        }
+
+        svg {
+            fill: $white;
+            font-size: 30px;
+            margin-right: 10px;
+
+            @include mq('to', 577) {
+                font-size: 25px;
+            }
+        }
     }
 }
