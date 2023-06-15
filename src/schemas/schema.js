@@ -5,5 +5,5 @@ export const basicSchema = yup.object().shape({
     email: yup
         .string()
         .email('Please enter correct email')
-        .required('This field is required'),
+        .required('Email is required'),
 });

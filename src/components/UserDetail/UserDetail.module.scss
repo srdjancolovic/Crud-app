@@ -4,6 +4,11 @@
 .user-detail {
     height: 100%;
 
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+
     &__controls {
         width: 100%;
         display: flex;

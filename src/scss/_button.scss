@@ -10,6 +10,7 @@
     max-height: 50px;
     transition: $transition;
     cursor: pointer;
+    color: $orange;
 
     &--primary {
         background-color: $orange;
@@ -28,7 +29,6 @@
 
     &--secondary {
         border: 2px solid $orange;
-        color: $orange;
         font-size: 16px;
         line-height: 20px;
         padding: 15px 20px;
@@ -41,6 +41,25 @@
 
                 svg {
                     color: $white;
+                }
+            }
+        }
+    }
+
+    &--no-border {
+        border: none;
+        padding: 15px 20px 15px 0;
+
+        svg {
+            margin-right: 10px;
+            font-size: 20px;
+            transition: $transition;
+        }
+
+        @media (hover: hover) {
+            &:hover {
+                svg {
+                    transform: translateX(-5px);
                 }
             }
         }

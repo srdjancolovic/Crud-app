@@ -10,6 +10,7 @@ import { AiOutlineMail } from 'react-icons/ai';
 import { AiOutlineCalendar } from 'react-icons/ai';
 import { SlGlobe } from 'react-icons/sl';
 import { CgNotes } from 'react-icons/cg';
+import { BiArrowBack } from 'react-icons/bi';
 const UserDetail = () => {
     const params = useParams();
     const users = useSelector((state) => state.users.users);
@@ -31,19 +32,24 @@ const UserDetail = () => {
         <>
             {users.length > 0 ? (
                 <div className={classes['user-detail']}>
-                    <div className={classes['user-detail__controls']}>
-                        <button
-                            className="btn btn--delete"
-                            onClick={deleteUserHandler}
-                        >
-                            Delete{' '}
-                        </button>
-                        <Link
-                            to={`/${params.userId}/edit`}
-                            className="btn btn--primary"
-                        >
-                            Edit
+                    <div className={classes['user-detail__buttons']}>
+                        <Link to=".." className="btn btn--no-border">
+                            <BiArrowBack /> Back
                         </Link>
+                        <div className={classes['user-detail__controls']}>
+                            <button
+                                className="btn btn--delete"
+                                onClick={deleteUserHandler}
+                            >
+                                Delete{' '}
+                            </button>
+                            <Link
+                                to={`/${params.userId}/edit`}
+                                className="btn btn--primary"
+                            >
+                                Edit
+                            </Link>
+                        </div>
                     </div>
                     <div className={classes['user-detail__content']}>
                         <div className={classes['user-detail__img-name']}>

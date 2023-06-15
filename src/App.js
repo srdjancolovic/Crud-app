@@ -3,7 +3,7 @@ import './App.scss';
 import Root from './pages/Root/Root';
 import Newuser from './pages/NewUser/NewUser';
 import AllUsers from './pages/AllUsers/AllUsers';
-import ErrorPage from './pages/Error/Error';
+import ErrorPage from './pages/Error/ErrorPage';
 import EditUser from './pages/EditUser/EditUser';
 import UserDetail from './components/UserDetail/UserDetail';
 const router = createBrowserRouter([

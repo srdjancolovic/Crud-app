@@ -5,13 +5,15 @@ import { Formik, Form } from 'formik';
 import { basicSchema } from '../../schemas/schema';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUsers, editUsers } from '../../store/thunks/usersThunk';
-import { useState } from 'react';
 import Textarea from '../Textarea/Textarea';
+import { useState } from 'react';
+import Modal from '../Modal/Modal';
+
 const UserForm = ({ user }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const formMessage = useSelector((state) => state.ui.formMessage);
-
+    const [modalOpen, setModalOpen] = useState(false);
     //Date and timestamp
 
     //Timestamp used for sorting because of redux toolkit limitations
@@ -25,7 +27,11 @@ const UserForm = ({ user }) => {
 
     const cancelBtnHandler = (e) => {
         e.preventDefault();
-        navigate('/');
+        setModalOpen(true);
+    };
+
+    const handlePopupClose = () => {
+        setModalOpen(false);
     };
 
     const onSubmit = (values) => {
@@ -60,62 +66,85 @@ const UserForm = ({ user }) => {
     };
 
     return (
-        <Formik
-            initialValues={
-                user
-                    ? {
-                          name: user.name,
-                          email: user.email,
-                          phone: user.phone,
-                          website: user.web,
-                          notes: user.notes,
-                      }
-                    : { name: '', email: '', phone: '', website: '', notes: '' }
-            }
-            validationSchema={basicSchema}
-            onSubmit={onSubmit}
-        >
-            {(props) => (
-                <Form className={classes.form}>
-                    <Input id="name" name="name" label="Name" type="text" />
-                    <Input id="email" name="email" label="Email" type="email" />
-                    <Input id="phone" name="phone" label="Phone" type="phone" />
-                    <Input
-                        id="website"
-                        name="website"
-                        label="Website"
-                        type="text"
-                    />
-                    <Textarea label="Additional notes" name="notes" />
+        <>
+            <Modal openModal={modalOpen} closeModal={handlePopupClose} />
 
-                    <div className={classes['form__controls']}>
-                        <div className={classes['form__message']}>
-                            <p
-                                className={`${
-                                    formMessage
-                                        ? classes['form__success-msg--show']
-                                        : classes['form__success-msg--hide']
-                                } form__success-msg`}
-                            >
-                                User successfully edited!
-                            </p>
-                        </div>
+            <Formik
+                initialValues={
+                    user
+                        ? {
+                              name: user.name,
+                              email: user.email,
+                              phone: user.phone,
+                              website: user.web,
+                              notes: user.notes,
+                          }
+                        : {
+                              name: '',
+                              email: '',
+                              phone: '',
+                              website: '',
+                              notes: '',
+                          }
+                }
+                validationSchema={basicSchema}
+                onSubmit={onSubmit}
+            >
+                {(props) => (
+                    <Form className={classes.form}>
+                        <Input id="name" name="name" label="Name" type="text" />
+                        <Input
+                            id="email"
+                            name="email"
+                            label="Email"
+                            type="email"
+                        />
+                        <Input
+                            id="phone"
+                            name="phone"
+                            label="Phone"
+                            type="phone"
+                        />
+                        <Input
+                            id="website"
+                            name="website"
+                            label="Website"
+                            type="text"
+                        />
+                        <Textarea label="Additional notes" name="notes" />
 
-                        <div className={classes['form__actions']}>
-                            <button
-                                className="btn btn--secondary"
-                                onClick={cancelBtnHandler}
-                            >
-                                Cancel
-                            </button>
-                            <button className="btn btn--primary" type="submit">
-                                Save
-                            </button>
+                        <div className={classes['form__controls']}>
+                            <div className={classes['form__message']}>
+                                <p
+                                    className={`${
+                                        formMessage
+                                            ? classes['form__success-msg--show']
+                                            : classes['form__success-msg--hide']
+                                    } form__success-msg`}
+                                >
+                                    User successfully edited!
+                                </p>
+                            </div>
+
+                            <div className={classes['form__actions']}>
+                                <button
+                                    className="btn btn--secondary"
+                                    onClick={cancelBtnHandler}
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    className="btn btn--primary"
+                                    type="submit"
+                                >
+                                    Save
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </Form>
-            )}
-        </Formik>
+                    </Form>
+                )}
+            </Formik>
+        </>
     );
 };
 

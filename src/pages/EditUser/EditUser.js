@@ -1,9 +1,10 @@
 import { useParams } from 'react-router-dom';
-import { useSelector, dispatch, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import UserForm from '../../components/Form/UserForm';
 import { useEffect } from 'react';
 import { fetchUsers } from '../../store/thunks/usersThunk';
 import Notification from '../../components/Notification/Notification';
+
 const EditUser = () => {
     const params = useParams();
     const users = useSelector((state) => state.users.users);

@@ -17,7 +17,7 @@ export const fetchUsers = () => {
         const fetchData = async () => {
             const usersColection = collection(db, 'users');
             const response = await getDocs(usersColection);
-
+            console.log(response);
             const data = response.docs.map((doc) => ({
                 ...doc.data(),
                 id: doc.id,
@@ -29,7 +29,6 @@ export const fetchUsers = () => {
         try {
             dispatch(uiActions.loadingUsers(true));
             const userData = await fetchData();
-            console.log('FETCHED USER DATA', userData);
             let selectedUserData = [];
 
             for (const key in userData) {

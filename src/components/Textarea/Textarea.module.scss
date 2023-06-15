@@ -6,16 +6,6 @@
     min-height: 150px;
     position: relative;
 
-    // &__focused {
-    //     .textarea__label {
-    //         top: -21px;
-    //         left: 0;
-    //         font-size: 14px;
-    //         line-height: 18px;
-    //         transition: $transition;
-    //     }
-    // }
-
     textarea {
         min-width: 100%;
         max-width: 100%;
@@ -30,6 +20,7 @@
         font-size: 16px;
         line-height: 20px;
         cursor: text;
+        font-family: 'Montserrat';
 
         @media (hover: hover) {
             &:hover {
@@ -54,13 +45,4 @@
     label {
         margin-left: 10px;
     }
-    // label {
-    //     position: absolute;
-    //     top: 15px;
-    //     left: 20px;
-    //     font-size: 16px;
-    //     line-height: 20px;
-    //     transition: $transition;
-    //     cursor: text;
-    // }
 }
