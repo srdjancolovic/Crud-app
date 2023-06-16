@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Popup from 'reactjs-popup';
-const Modal = ({ openModal, closeModal }) => {
+const Modal = ({ openModal, closeModal, modalText, confirmBtnAction }) => {
     const navigate = useNavigate();
     const navigateHandler = () => {
         navigate('/');
@@ -12,13 +12,9 @@ const Modal = ({ openModal, closeModal }) => {
             open={openModal}
             onClose={closeModal}
             lockScroll
-            // trigger={<button> Trigger</button>}
         >
             <div className="popup-text-btns">
-                <p>
-                    Are you sure you want to cancel? All unsaved changes will be
-                    lost!
-                </p>
+                <p>{modalText}</p>
 
                 <div className="popup-btns">
                     <button className="btn btn--primary" onClick={closeModal}>
@@ -26,7 +22,7 @@ const Modal = ({ openModal, closeModal }) => {
                     </button>
                     <button
                         className="btn btn--secondary"
-                        onClick={navigateHandler}
+                        onClick={confirmBtnAction}
                     >
                         YES
                     </button>

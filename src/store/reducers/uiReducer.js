@@ -4,6 +4,7 @@ const initalUIState = {
     loadingData: false,
     disabled: true,
     formMessage: false,
+    showModal: false,
 };
 
 const uiReducer = createSlice({
@@ -18,6 +19,12 @@ const uiReducer = createSlice({
         },
         formMessage(state, action) {
             state.formMessage = action.payload;
+        },
+        openModal(state) {
+            state.showModal = true;
+        },
+        closeModal(state) {
+            state.showModal = false;
         },
     },
 });

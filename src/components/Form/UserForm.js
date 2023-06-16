@@ -8,13 +8,13 @@ import { addUsers, editUsers } from '../../store/thunks/usersThunk';
 import Textarea from '../Textarea/Textarea';
 import { useState } from 'react';
 import Modal from '../Modal/Modal';
+import { uiActions } from '../../store/reducers/uiReducer';
 
 const UserForm = ({ user }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const formMessage = useSelector((state) => state.ui.formMessage);
-    const [modalOpen, setModalOpen] = useState(false);
-    //Date and timestamp
+    const modalOpen = useSelector((state) => state.ui.showModal);
 
     //Timestamp used for sorting because of redux toolkit limitations
     const timestamp = Date.now();
@@ -27,11 +27,11 @@ const UserForm = ({ user }) => {
 
     const cancelBtnHandler = (e) => {
         e.preventDefault();
-        setModalOpen(true);
+        dispatch(uiActions.openModal());
     };
 
     const handlePopupClose = () => {
-        setModalOpen(false);
+        dispatch(uiActions.closeModal());
     };
 
     const onSubmit = (values) => {
@@ -67,7 +67,16 @@ const UserForm = ({ user }) => {
 
     return (
         <>
-            <Modal openModal={modalOpen} closeModal={handlePopupClose} />
+            <Modal
+                openModal={modalOpen}
+                closeModal={handlePopupClose}
+                modalText="Are you sure you want to cancel? All unsaved changes will be
+                    lost!"
+                confirmBtnAction={() => {
+                    dispatch(uiActions.closeModal());
+                    navigate('/');
+                }}
+            />
 
             <Formik
                 initialValues={

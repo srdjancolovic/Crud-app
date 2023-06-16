@@ -26,33 +26,28 @@ export const fetchUsers = () => {
             return data;
         };
 
-        try {
-            dispatch(uiActions.loadingUsers(true));
-            const userData = await fetchData();
-            let selectedUserData = [];
+        dispatch(uiActions.loadingUsers(true));
+        const userData = await fetchData();
+        let selectedUserData = [];
 
-            for (const key in userData) {
-                selectedUserData.push({
-                    name: userData[key].name,
-                    id: userData[key].id,
-                    web: userData[key].website,
-                    email: userData[key].email,
-                    phone: userData[key].phone,
-                    notes: userData[key].notes,
-                    date: userData[key].date,
-                    timestamp: userData[key].timestamp,
-                });
-            }
-            dispatch(
-                usersActions.updatedUsers({
-                    users: selectedUserData || [],
-                })
-            );
-            dispatch(uiActions.loadingUsers(false));
-        } catch (err) {
-            //!Sredhiti erore gresku da prikazuje na ekranu
-            console.log(err.message);
+        for (const key in userData) {
+            selectedUserData.push({
+                name: userData[key].name,
+                id: userData[key].id,
+                web: userData[key].website,
+                email: userData[key].email,
+                phone: userData[key].phone,
+                notes: userData[key].notes,
+                date: userData[key].date,
+                timestamp: userData[key].timestamp,
+            });
         }
+        dispatch(
+            usersActions.updatedUsers({
+                users: selectedUserData || [],
+            })
+        );
+        dispatch(uiActions.loadingUsers(false));
     };
 };
 

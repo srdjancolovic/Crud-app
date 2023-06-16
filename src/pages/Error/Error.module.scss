@@ -1,0 +1,21 @@
+.error-page {
+    overflow-y: hidden;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    text-align: center;
+    width: 100%;
+    max-width: 85%;
+
+    p {
+        margin-top: 10px;
+    }
+
+    &__buttons {
+        margin-top: 20px;
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+    }
+}
