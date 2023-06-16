@@ -4,7 +4,6 @@ import { fetchUsers } from '../../store/thunks/usersThunk';
 import User from '../../components/User/User';
 import SearchSort from '../../components/SearchSort/SearchSort';
 import Notification from '../../components/Notification/Notification';
-import { usersActions } from '../../store/reducers/usersReducer';
 
 const AllUsers = () => {
     const dispatch = useDispatch();

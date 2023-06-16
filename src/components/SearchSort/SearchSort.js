@@ -8,6 +8,7 @@ const SearchSort = ({ max450, onSearchUser }) => {
     const [descActive, setDescActive] = useState(false);
     const dispatch = useDispatch();
     const users = useSelector((state) => state.users.users);
+
     const sortAscHandler = () => {
         dispatch(usersActions.sortAscending());
         setAscActive(false);

@@ -8,7 +8,6 @@ import {
     doc,
     getDocs,
     updateDoc,
-    getDoc,
 } from 'firebase/firestore';
 
 //Fetch user data
@@ -51,8 +50,9 @@ export const fetchUsers = () => {
     };
 };
 
+//Add users
 export const addUsers = (data) => {
-    return async (dispatch) => {
+    return async () => {
         const sendUserData = async () => {
             const usersColection = collection(db, 'users');
             await addDoc(usersColection, data);
@@ -61,6 +61,7 @@ export const addUsers = (data) => {
     };
 };
 
+//Edit users
 export const editUsers = (id, data) => {
     return async (dispatch) => {
         const editUserData = async () => {
@@ -77,8 +78,9 @@ export const editUsers = (id, data) => {
     };
 };
 
+//Delete users
 export const deleteUsers = (id) => {
-    return async (dispatch) => {
+    return async () => {
         const deleteUserData = async () => {
             const userDoc = doc(db, 'users', id);
             await deleteDoc(userDoc);

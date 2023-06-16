@@ -35,11 +35,3 @@ const SearchBar = (props) => {
 };
 
 export default SearchBar;
-// ||
-//                 user.email
-//                     .toLowerCase()
-//                     .includes(e.target.value.toLowerCase()) ||
-//                 user.phone ||
-//                 user.website
-//                     .toLowerCase()
-//                     .includes(e.target.value.toLowerCase())

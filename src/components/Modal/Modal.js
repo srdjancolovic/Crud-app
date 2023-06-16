@@ -1,11 +1,5 @@
-import { useNavigate } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 const Modal = ({ openModal, closeModal, modalText, confirmBtnAction }) => {
-    const navigate = useNavigate();
-    const navigateHandler = () => {
-        navigate('/');
-    };
-
     return (
         <Popup
             className="popup-content"

@@ -5,7 +5,6 @@ import { BsPlus } from 'react-icons/bs';
 
 const Navigation = () => {
     const location = useLocation();
-
     const newUserPage = location.pathname.includes('new');
     const allUsersPage = location.pathname === '/';
 

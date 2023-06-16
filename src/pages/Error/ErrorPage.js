@@ -1,5 +1,5 @@
-import { Link, useRouteError } from 'react-router-dom';
-import classes from './Error.module.scss';
+import { Link } from 'react-router-dom';
+import classes from './ErrorPage.module.scss';
 const ErrorPage = () => {
     const reloadPageHandler = () => {
         window.location.reload(true);

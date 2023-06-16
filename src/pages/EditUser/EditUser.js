@@ -10,11 +10,11 @@ const EditUser = () => {
     const users = useSelector((state) => state.users.users);
     const paramsId = params.userId;
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(fetchUsers());
     }, [dispatch]);
 
-    // const user = users.find((user) => user.id === paramsId);
     const user = users.find((user) => user.id === paramsId);
 
     return (

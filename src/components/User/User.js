@@ -11,10 +11,10 @@ const userItem = ({ id, name, email, phone, web }) => {
                 </div>
                 <div className={classes['user-item__web-email']}>
                     <span className={classes['user-item__date']}>
-                        {web ? web : 'No website'}{' '}
+                        {web ? web : 'No website'}
                     </span>
                     <span className={classes['user-item__date']}>
-                        {phone ? phone : 'No phone number'}{' '}
+                        {phone ? phone : 'No phone number'}
                     </span>
                 </div>
             </Link>
