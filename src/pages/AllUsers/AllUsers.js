@@ -12,10 +12,12 @@ const AllUsers = () => {
     const [searchRes, setSearchRes] = useState([]);
     const [emptySearch, setEmptySearch] = useState(true);
 
+    //Fetch all users
     useEffect(() => {
         dispatch(fetchUsers());
     }, [dispatch]);
 
+    //Set searched users
     const searchUsersHandler = (users, isEmpty) => {
         setSearchRes(users);
         setEmptySearch(isEmpty);
@@ -51,7 +53,7 @@ const AllUsers = () => {
                         })
                     )}
                     {searchRes.length === 0 && !emptySearch ? (
-                        <Notification message="Nema rezultata" />
+                        <Notification message="No search results!" />
                     ) : (
                         searchRes.length > 0 &&
                         !emptySearch &&

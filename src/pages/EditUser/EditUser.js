@@ -11,10 +11,12 @@ const EditUser = () => {
     const paramsId = params.userId;
     const dispatch = useDispatch();
 
+    //users fetch called again so fields are populated on refresh
     useEffect(() => {
         dispatch(fetchUsers());
     }, [dispatch]);
 
+    //Specific user to be passed to edit form
     const user = users.find((user) => user.id === paramsId);
 
     return (

@@ -6,7 +6,6 @@ import { basicSchema } from '../../schemas/schema';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUsers, editUsers } from '../../store/thunks/usersThunk';
 import Textarea from '../Textarea/Textarea';
-import { useState } from 'react';
 import Modal from '../Modal/Modal';
 import { uiActions } from '../../store/reducers/uiReducer';
 
@@ -35,6 +34,7 @@ const UserForm = ({ user }) => {
     };
 
     const onSubmit = (values) => {
+        //Add new users on submit
         if (!user) {
             dispatch(
                 addUsers({
@@ -50,8 +50,8 @@ const UserForm = ({ user }) => {
             navigate('/');
         }
 
+        //Edit specific user
         if (user) {
-            console.log('USER', user.id);
             dispatch(
                 editUsers(user.id, {
                     name: values.name,
@@ -158,140 +158,3 @@ const UserForm = ({ user }) => {
 };
 
 export default UserForm;
-
-// export const eventUpdate = async ({ request, params }) => {
-//     const data = await request.formData();
-// };
-
-//********************* ISPOD JE PRIJE FORMIKA
-
-// import { useState, useEffect, useRef } from 'react';
-// import Input from '../Input/Input';
-// import Textarea from '../Textarea/Textarea';
-// import axios from 'axios';
-// import { useNavigate } from 'react-router-dom';
-
-// const api = axios.create({
-//     baseURL: 'https://jsonplaceholder.typicode.com/users/',
-// });
-
-// const UserForm = ({ user }) => {
-//     const [name, setName] = useState('');
-//     const [email, setEmail] = useState('');
-//     const [phone, setPhone] = useState('');
-//     const [web, setWeb] = useState('');
-
-//     const nameRef = useRef();
-
-//     // const userID = user.id.toString();
-//     const handleNameChange = (e) => {
-//         setName(e.target.value);
-//     };
-//     const handleEmailChange = (e) => {
-//         setEmail(e.target.value);
-//     };
-//     const handlePhoneChange = (e) => {
-//         setPhone(e.target.value);
-//     };
-//     const handleWebChange = (e) => {
-//         setWeb(e.target.value);
-//     };
-//     const navigate = useNavigate();
-
-//     const cancelBtnHandler = (e) => {
-//         e.preventDefault();
-//         navigate('/');
-//     };
-
-//     const hasError = name.length < 3 || name === '';
-
-//     // console.log(typeof userID);
-
-//     // const handleSubmit = async () => {
-//     //     const response = await api.patch(
-//     //         userID,
-//     //         {
-//     //             name: name,
-//     //         },
-//     //         {
-//     //             headers: { 'Content-type': 'application/json; charset=UTF-8' },
-//     //         }
-//     //     );
-
-//     //     console.log(response);
-//     // };
-
-//     // console.log(user);
-//     return (
-//         <form className="form">
-//             <Input
-//                 label="Name"
-//                 htmlfFor="name"
-//                 name="name"
-//                 type="text"
-//                 onChange={(e) => handleNameChange(e)}
-//                 className="input__full-width"
-//                 defaulValue={user ? user.name : name}
-//                 errMsg="Name is required field!"
-//                 hasError={hasError}
-//             />
-
-//             <Input
-//                 label="Email"
-//                 htmlfFor="email"
-//                 name="email"
-//                 type="email"
-//                 onChange={(e) => handleEmailChange(e)}
-//                 className="input__full-width"
-//                 defaulValue={user ? user.email : email}
-//                 errMsg="Please enter valid email!"
-//             />
-
-//             <Input
-//                 label="Phone"
-//                 htmlfFor="phone"
-//                 name="phone"
-//                 type="phone"
-//                 onChange={(e) => handlePhoneChange(e)}
-//                 className="input__full-width"
-//                 defaulValue={user ? user.phone : phone}
-//                 errMsg="Please enter valid phone!"
-//             />
-
-//             <Input
-//                 label="Website"
-//                 htmlfFor="website"
-//                 name="website"
-//                 type="text"
-//                 onChange={(e) => handleWebChange(e)}
-//                 className="input__full-width"
-//                 defaulValue={user ? user.web : web}
-//                 errMsg="Please enter valid web address!"
-//             />
-
-//             {/* <Textarea label="Description" /> */}
-
-//             <div className="form__controls">
-//                 <button
-//                     className="btn btn--secondary"
-//                     onClick={cancelBtnHandler}
-//                 >
-//                     Cancel
-//                 </button>
-//                 <button
-//                     className="btn btn--primary"
-//                     type="submit"
-//                     disabled={!user || !user.name ? hasError : false}
-//                 >
-//                     Save
-//                 </button>
-//             </div>
-//         </form>
-//     );
-// };
-
-// export default UserForm;
-
-// // export const eventUpdate = async ({ request, params }) => {
-// //     const data = await request.formData();
-// // };

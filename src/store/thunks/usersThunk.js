@@ -1,6 +1,7 @@
 import { usersActions } from '../reducers/usersReducer';
 import { uiActions } from '../reducers/uiReducer';
 import { db } from '../../firebase-config';
+//Firebase imports
 import {
     addDoc,
     collection,
@@ -16,7 +17,6 @@ export const fetchUsers = () => {
         const fetchData = async () => {
             const usersColection = collection(db, 'users');
             const response = await getDocs(usersColection);
-            console.log(response);
             const data = response.docs.map((doc) => ({
                 ...doc.data(),
                 id: doc.id,

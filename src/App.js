@@ -6,6 +6,8 @@ import AllUsers from './pages/AllUsers/AllUsers';
 import ErrorPage from './pages/Error/ErrorPage';
 import EditUser from './pages/EditUser/EditUser';
 import UserDetail from './components/UserDetail/UserDetail';
+
+//ROute definitions
 const router = createBrowserRouter([
     {
         path: '/',
