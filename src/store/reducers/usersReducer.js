@@ -4,8 +4,6 @@ const initalUsersState = {
     users: [],
     changed: false,
     searchRes: [],
-    ascSort: false,
-    descSort: false,
 };
 
 const usersReducer = createSlice({
@@ -19,14 +17,10 @@ const usersReducer = createSlice({
 
         sortAscending(state) {
             state.users = state.users.sort((a, b) => a.timestamp - b.timestamp);
-            state.ascSort = true;
-            state.descSort = false;
         },
 
         sortDescending(state) {
             state.users = state.users.sort((a, b) => b.timestamp - a.timestamp);
-            state.ascSort = false;
-            state.descSort = true;
         },
     },
 });
